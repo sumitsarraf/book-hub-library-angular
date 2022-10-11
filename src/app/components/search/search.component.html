@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<div class="background" style="background-image: url('assets/books-g3dcc20b6b_1920.jpg');">
+    <div class="container">
+        <div class="body">
+    <mat-card class="example-card card">
+
+        <mat-toolbar color="accent">
+            <span class="fill-remaining-space">Search in itbookStore</span>
+          </mat-toolbar>
+          
+          <div class="container" novalidate>
+            <div class="row">
+                <div class="col">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+          
+                        <mat-form-field class="form-element">
+                          <input matInput type="text" placeholder="Search your book" formControlName="bookname">
+                        </mat-form-field>
+          
+                        <div class="form-element">
+                          <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Search Book</button>
+                        </div>
+                    
+                      </form>
+                </div>
+                
+              </div>
+            
+          </div>
+
+
+          <div class="col">
+            <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+                <div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let person of totalAngularPackages">
+                  <mat-card class="mat-elevation-z4">
+                    <mat-card-header>
+                      <mat-card-title>{{person.title}}</mat-card-title>
+                    </mat-card-header>
+                    <img
+                      [src]="person.image"
+                    />
+                    <mat-card-content>
+                      <p>
+                        {{person.subtitle}}
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <a mat-raised-button color="primary" cdkFocusInitial href="{{ person.url }}" target="_blank">Buy</a>
+                      <button mat-button>ISBN: {{person.isbn13}}</button>
+                   
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
+              
+
+
+            <!-- <mat-grid-list cols="1" >
+
+                <div class="searchresult">
+                <mat-grid-tile *ngFor="let person of totalAngularPackages">
+                    <mat-card class="example-card">
+                        <mat-card-title-group>
+                            <mat-card-title>Shiba Inu</mat-card-title>
+                            <mat-card-subtitle>Small</mat-card-subtitle>
+                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+                          </mat-card-title-group>
+                          <mat-card-content>
+                            {{longTex
+                          </mat-card-content>
+                      </mat-card>
+                      
+                </mat-grid-tile>
+            </div>
+              </mat-grid-list> -->
+              
+        </div>
+    </mat-card>
+    
+</div>
+</div>
+</div>
+
+<app-footer></app-footer>

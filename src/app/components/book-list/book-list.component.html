@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="background" style="background-image: url('assets/books-g3dcc20b6b_1920.jpg');">
+    <div class="body">
+        <div class="card">
+            <div class="card-header">
+                <mat-form-field appearance="fill">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" [(ngModel)]="titleFilter" placeholder="Ex. Nougat">
+                </mat-form-field>
+            </div>
+
+            <div class="card-header">
+                <mat-form-field appearance="fill">
+                    <mat-label>Author</mat-label>
+                    <input matInput type="text" [(ngModel)]="authorFilter" placeholder="Ex. Nougat">
+                </mat-form-field>
+            </div>
+
+            <div class="card-header">
+                <mat-form-field appearance="fill">
+                    <mat-label>Genre</mat-label>
+                    <mat-select (selectionChange)="genreSelected($event)">
+                        <mat-option value=""></mat-option>
+                        <mat-option *ngFor="let genre of genresList" [value]="genre">{{ genre }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="card-header">
+                <mat-form-field appearance="fill">
+                    <mat-label>Rating</mat-label>
+                    <mat-select (selectionChange)="ratingSelected($event)">
+                        <mat-option value=""></mat-option>
+                        <mat-option *ngFor="let rating of ratingList" [value]="rating[1]"> {{ rating[0] }} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <mat-card-content>
+                <div class="card-body" *ngIf="filteredBooks$ | async as books">
+                    <p-dataView [value]="books" [paginator]="true" [rows]="60" layout="grid">
+                        <ng-template let-book pTemplate="gridItem">
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="book-item">
+                                    <mat-card class="example-card"
+                                        style="width: 100%; border: 1px solid grey; height: 100%;">
+                                        <button type="button" class="book-item-btn"
+                                            [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                                            (click)="bookSelected(book.bookId)"
+                                            [style.backgroundImage]="'url('+ book.coverImg +')'">
+                                        </button>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataView>
+                </div>
+            </mat-card-content>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,44 @@
+<div class="card-modal" *ngIf="book$ | async as book">
+  <div class="mdDiv">
+    <h2 mat-dialog-title>{{ book.title }}</h2>
+    <mat-dialog-content class="mat-typography">
+      <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile [colspan]="2" [rowspan]="4">
+          <div class="book-cover">
+            <img src="{{ book.coverImg }}" />
+          </div>
+        </mat-grid-tile>
+        <div class="moredetails">
+          <mat-grid-tile [colspan]="2" [rowspan]="4">
+            <div class="book-detail">
+              <p>Series: {{ book.series }}</p>
+              <p>Author: {{ book.author }}</p>
+              <p>Rating: {{ book.rating }}</p>
+              <p>Publish Date: {{ book.publishDate }}</p>
+              <p>Pages: {{ book.pages }}</p>
+              <p class="desc">Description: {{ book.description }}</p>
+            </div>
+          </mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button
+        mat-raised-button
+        color="warn"
+        mat-dialog-close
+        (click)="clearBook()"
+      >
+        Cancel
+      </button>
+      <a
+        mat-raised-button
+        color="primary"
+        cdkFocusInitial
+        href="{{ amazonLink }}"
+        target="_blank"
+        >Buy</a
+      >
+    </mat-dialog-actions>
+  </div>
+</div>

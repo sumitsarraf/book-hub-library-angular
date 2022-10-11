@@ -1,0 +1,187 @@
+<app-header></app-header>
+<div class="background" style="background-image: url('assets/books-g3dcc20b6b_1920.jpg');">
+<div class="container">
+  <div class="body">
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Top Picks</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body" *ngIf="booksTopPicks$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item" style="transform: none;">
+                <div class="flip-box">
+                  <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                      <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                        <button type="button" class="book-item-btn"
+                          [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                          (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                        </button>
+                    </mat-card>
+                    </div>
+                    <div class="flip-box-back">
+                      <mat-card-header>
+                        <mat-card-subtitle><span style="font-weight: bold;">Author: </span> <span>{{book.author}}</span></mat-card-subtitle>
+                        <mat-card-subtitle><span style="font-weight: bold;">Edition: </span><span>{{book.edition}}</span></mat-card-subtitle>
+                        <mat-card-subtitle><span style="font-weight: bold;">Language: </span><span>{{book.language}}</span></mat-card-subtitle>
+                        <mat-card-subtitle><span style="font-weight: bold;">Publisher: </span><span>{{book.publisher}}</span></mat-card-subtitle>
+                        <mat-card-subtitle><span style="font-weight: bold;">Book Format: </span><span>{{book.bookFormat}}</span></mat-card-subtitle>
+                      </mat-card-header>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Highly Rated</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksHighlyRated$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Award Winners</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksAwardWinners$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title> Adventure Books</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksGAdventure$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Romance Books</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksGRomance$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Classic Literature</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksGClassics$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="example-card card">
+      <mat-card-header>
+        <mat-card-title>Childrens Literature</mat-card-title>
+      </mat-card-header>
+      <mat-divider inset></mat-divider>
+      <mat-card-content>
+        <div class="card-body"  *ngIf="booksGChildrens$ | async as books">
+          <p-carousel [value]="books" [numVisible]="6" [numScroll]="5" [circular]="false" [showIndicators]="false">
+            <ng-template let-book pTemplate="item">
+              <div class="book-item">
+                <mat-card class="example-card" style="width: 100%; border: 1px solid grey; height: 100%;">
+                  <button type="button" class="book-item-btn"
+                    [ngClass]="{ active: book?.bookId === (selectedBook$ | async)?.bookId }"
+                    (click)="bookSelected(book.bookId)" [style.backgroundImage]="'url('+ book.coverImg +')'">
+                  </button>
+                </mat-card>
+              </div>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+</div>
+<app-footer></app-footer>

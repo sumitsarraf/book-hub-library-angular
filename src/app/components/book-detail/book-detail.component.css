@@ -1,0 +1,10 @@
+.mdDiv {
+    height: 100%;
+    width: 70vw;
+    max-width: 1200px;
+    position: relative;
+}
+
+.book-cover img {
+    width: 100%;
+}
